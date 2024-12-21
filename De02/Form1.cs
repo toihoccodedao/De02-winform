@@ -168,11 +168,13 @@ using De02.Model;
                 ClearControls();
 
                 MessageBox.Show("Thêm sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+           
         }
         private void ClearControls()
         {
@@ -224,11 +226,15 @@ using De02.Model;
                 ClearControls();
 
                 MessageBox.Show("Cập nhật sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+          
+
+           
 
         }
 
@@ -292,6 +298,59 @@ using De02.Model;
                 this.Close();
             }
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy giá trị tìm kiếm từ TextBox
+                string searchValue = txtTim.Text.Trim();
+
+                using (var db = new Model1())
+                {
+                    // Tìm kiếm sản phẩm có tên chứa từ khóa và kết hợp với LoaiSP
+                    var searchResults = db.Sanpham
+                                           .Where(sp => sp.TenSP.Contains(searchValue))
+                                           .Join(db.LoaiSP,
+                                                 sp => sp.MaLoai,
+                                                 loai => loai.MaLoai,
+                                                 (sp, loai) => new
+                                                 {
+                                                     sp.MaSP,
+                                                     sp.TenSP,
+                                                     sp.NgayNhap,
+                                                     LoaiSP = loai.TenLoai
+                                                 })
+                                           .ToList();
+
+                    // Gán dữ liệu kết quả tìm kiếm vào DataGridView
+                    dataGridView1.DataSource = searchResults;
+
+                    // Đặt tiêu đề cột nếu cần
+                    dataGridView1.Columns["MaSP"].HeaderText = "Mã Sản Phẩm";
+                    dataGridView1.Columns["TenSP"].HeaderText = "Tên Sản Phẩm";
+                    dataGridView1.Columns["NgayNhap"].HeaderText = "Ngày Nhập";
+                    dataGridView1.Columns["LoaiSP"].HeaderText = "Loại Sản Phẩm";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            
+        }
+       
+
+        private void btnKLuu_Click(object sender, EventArgs e)
+        {
+          
+         
         }
     }
 }

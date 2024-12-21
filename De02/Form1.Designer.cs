@@ -37,7 +37,7 @@
             this.txtMaSP = new System.Windows.Forms.TextBox();
             this.txtTenSP = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTim = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -138,13 +138,14 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Danh Muc San Pham";
             // 
-            // textBox1
+            // txtTim
             // 
-            this.textBox1.Location = new System.Drawing.Point(65, 57);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 38);
-            this.textBox1.TabIndex = 10;
+            this.txtTim.Location = new System.Drawing.Point(65, 57);
+            this.txtTim.Multiline = true;
+            this.txtTim.Name = "txtTim";
+            this.txtTim.Size = new System.Drawing.Size(119, 38);
+            this.txtTim.TabIndex = 10;
+            this.txtTim.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnTim
             // 
@@ -193,6 +194,7 @@
             this.btnLuu.TabIndex = 15;
             this.btnLuu.Text = "Luu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnKLuu
             // 
@@ -202,6 +204,7 @@
             this.btnKLuu.TabIndex = 16;
             this.btnKLuu.Text = "Khong Luu";
             this.btnKLuu.UseVisualStyleBackColor = true;
+            this.btnKLuu.Click += new System.EventHandler(this.btnKLuu_Click);
             // 
             // btnThoat
             // 
@@ -258,7 +261,7 @@
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.btnTim);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTim);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtTenSP);
             this.Controls.Add(this.txtMaSP);
@@ -288,7 +291,7 @@
         private System.Windows.Forms.TextBox txtMaSP;
         private System.Windows.Forms.TextBox txtTenSP;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTim;
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnSua;
